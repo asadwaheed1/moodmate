@@ -17,4 +17,4 @@
 
 ## Screenshots
 
-![App Screenshot](https://github.com/user-attachments/assets/0103625b-2a6d-4bd5-bd0a-4f9293fc793b)
+![App Screenshot](https://github.com/user-attachments/assets/1e3a3798-485a-4fea-89f6-596af8a11eb4)
