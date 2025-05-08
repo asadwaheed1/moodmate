@@ -1,3 +1,4 @@
+import asyncio
 from agents import (
     Agent,
     Runner,
@@ -5,7 +6,7 @@ from agents import (
     OpenAIChatCompletionsModel,
 )
 from agents.run import RunConfig
-from agent_hello.secrets import secrets
+from moodmate.secrets import secrets
 from rich import print
 
 
@@ -20,10 +21,16 @@ model = OpenAIChatCompletionsModel(
 )
 
 
-def main():
+async def main():
     agent = Agent(
-        name="Assistant",
-        instructions="A helpful assistant that can answer questions and provide information.",
+        name="MoodMate",
+        instructions="""
+    You are MoodMate, a friendly and emotionally intelligent assistant.
+    Your job is to help users reflect on their emotions and offer general tips for self-care.
+    Be supportive, non-judgmental, and never offer medical advice.
+    Use soft, comforting language and speak like a calm friend or life coach.
+    Always end your response with a gentle question to encourage continued reflection.
+    """,
     )
 
     config = RunConfig(
@@ -31,7 +38,12 @@ def main():
         tracing_disabled=True,
     )
 
-    result = Runner.run_sync(agent, "What is capital of Pakistan?", run_config=config)
+    result = await Runner.run(agent, "I've been feeling anxious and low energy lately.", run_config=config)
 
     print("\n")
     print(result.final_output)
+    with open("output.md", "w", encoding="utf-8") as f:
+        f.write(result.final_output)
+
+def run_main():
+    asyncio.run(main())

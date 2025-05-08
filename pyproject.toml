@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.scripts]
-moodmate = "moodmate:main"
+moodmate = "moodmate.runner_config:run_main"
 
 [build-system]
 requires = ["hatchling"]
